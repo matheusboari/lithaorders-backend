@@ -24,10 +24,10 @@ routes.delete('/clients/:id', ClientController.delete)
 
 // Product routes
 
-// routes.get('/products', ProductController.index)
-// routes.post('/products', ProductController.store)
+routes.get('/products', ProductController.index)
+routes.post('/products', ProductController.store)
 // routes.put('/products', ProductController.update)
-// routes.delete('/products', ProductController.delete)
+routes.delete('/products/:id', ProductController.delete)
 
 // Order routes
 

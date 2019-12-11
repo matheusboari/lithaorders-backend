@@ -54,7 +54,7 @@ class ClientController {
     try {
       await client.destroy()
 
-      return res.json('Successfully deleted')
+      return res.json('Successfully deleted.')
     } catch (err) {
       return res.status(400).json({ error: 'Delete fails.' })
     }
