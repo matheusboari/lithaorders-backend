@@ -1,10 +1,16 @@
 import Sequelize, { Model } from 'sequelize'
+import { addDays } from 'date-fns'
 
 class Order extends Model {
   static init(sequelize) {
     super.init(
       {
-        post_date: Sequelize.DATE,
+        post_date: {
+          type: Sequelize.VIRTUAL,
+          get() {
+            return addDays(new Date(), 3)
+          },
+        },
         track_number: Sequelize.STRING,
         is_track_number: Sequelize.BOOLEAN,
         canceled_at: Sequelize.DATE,

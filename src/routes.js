@@ -31,8 +31,8 @@ routes.delete('/products/:id', ProductController.delete)
 
 // Order routes
 
-// routes.get('/orders', OrderController.index)
-// routes.post('/orders', OrderController.store)
+routes.get('/orders', OrderController.index)
+routes.post('/orders', OrderController.store)
 // routes.put('/orders', OrderController.update)
 // routes.delete('/orders', OrderController.delete)
 
