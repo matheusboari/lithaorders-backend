@@ -9,10 +9,6 @@ module.exports = {
         autoIncrement: true,
         primaryKey: true,
       },
-      post_date: {
-        type: Sequelize.DATE,
-        allowNull: false,
-      },
       track_number: {
         type: Sequelize.DATE,
         allowNull: true,
@@ -22,19 +18,12 @@ module.exports = {
         allowNull: false,
         defaultValue: false,
       },
-      product_id: {
-        type: Sequelize.INTEGER,
-        references: { model: 'products', key: 'id' },
-        onUpdate: 'CASCADE',
-        onDelete: 'SET NULL',
-        allowNull: true,
-      },
       client_id: {
         type: Sequelize.INTEGER,
         references: { model: 'clients', key: 'id' },
         onUpdate: 'CASCADE',
         onDelete: 'SET NULL',
-        allowNull: true,
+        allowNull: false,
       },
       canceled_at: {
         type: Sequelize.DATE,

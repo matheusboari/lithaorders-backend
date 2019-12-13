@@ -18,15 +18,6 @@ module.exports = {
         type: Sequelize.FLOAT,
         allowNull: false,
       },
-      quantity: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        defaultValue: 0,
-      },
-      description: {
-        type: Sequelize.TEXT,
-        allowNull: true,
-      },
       created_at: {
         type: Sequelize.DATE,
         allowNull: false,

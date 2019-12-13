@@ -11,6 +11,7 @@ class Order extends Model {
             return addDays(new Date(), 3)
           },
         },
+        products: Sequelize.ARRAY(Sequelize.INTEGER),
         track_number: Sequelize.STRING,
         is_track_number: Sequelize.BOOLEAN,
         canceled_at: Sequelize.DATE,
@@ -24,7 +25,6 @@ class Order extends Model {
   }
 
   static associate(models) {
-    this.belongsTo(models.Product, { foreignKey: 'product_id', as: 'product' })
     this.belongsTo(models.Client, { foreignKey: 'client_id', as: 'client' })
   }
 }
