@@ -10,13 +10,17 @@ module.exports = {
         primaryKey: true,
       },
       track_number: {
-        type: Sequelize.DATE,
+        type: Sequelize.STRING,
         allowNull: true,
       },
       is_track_number: {
         type: Sequelize.BOOLEAN,
         allowNull: false,
         defaultValue: false,
+      },
+      post_date: {
+        type: Sequelize.DATE,
+        allowNull: false,
       },
       client_id: {
         type: Sequelize.INTEGER,

@@ -1,17 +1,23 @@
 import Sequelize, { Model } from 'sequelize'
-import { addDays } from 'date-fns'
+import { format } from 'date-fns'
+import pt from 'date-fns/locale/pt'
 
 class Order extends Model {
   static init(sequelize) {
     super.init(
       {
-        post_date: {
+        post_date: Sequelize.DATE,
+        formattedDate: {
           type: Sequelize.VIRTUAL,
           get() {
-            return addDays(new Date(), 3)
+            return format(this.post_date, "dd 'de' MMMM", {
+              locale: pt,
+            })
           },
         },
-        products: Sequelize.ARRAY(Sequelize.INTEGER),
+        quantity_total: Sequelize.INTEGER,
+        status: Sequelize.STRING,
+        origin: Sequelize.STRING,
         track_number: Sequelize.STRING,
         is_track_number: Sequelize.BOOLEAN,
         canceled_at: Sequelize.DATE,
@@ -25,6 +31,11 @@ class Order extends Model {
   }
 
   static associate(models) {
+    this.belongsToMany(models.Product, {
+      through: models.ProductOrder,
+      foreignKey: 'order_id',
+      as: 'products',
+    })
     this.belongsTo(models.Client, { foreignKey: 'client_id', as: 'client' })
   }
 }

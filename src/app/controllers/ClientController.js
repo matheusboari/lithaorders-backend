@@ -1,15 +1,21 @@
+import { Op } from 'sequelize'
 import * as Yup from 'yup'
 
 import Client from '../models/Client'
 
 class ClientController {
   async index(req, res) {
-    const { page = 1 } = req.query
+    const { page = 1, name = '' } = req.query
 
     const clients = await Client.findAll({
       order: ['name'],
       limit: 20,
       offset: (page - 1) * 20,
+      where: {
+        name: {
+          [Op.iLike]: `%${name}%`,
+        },
+      },
     })
 
     return res.json(clients)

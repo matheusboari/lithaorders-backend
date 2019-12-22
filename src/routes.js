@@ -34,6 +34,6 @@ routes.delete('/products/:id', ProductController.delete)
 routes.get('/orders', OrderController.index)
 routes.post('/orders', OrderController.store)
 // routes.put('/orders', OrderController.update)
-// routes.delete('/orders', OrderController.delete)
+routes.delete('/orders/:id', OrderController.delete)
 
 export default routes
