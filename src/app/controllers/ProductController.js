@@ -9,8 +9,8 @@ class ProductController {
 
     const products = await Product.findAll({
       order: ['name'],
-      limit: 20,
-      offset: (page - 1) * 20,
+      limit: 10,
+      offset: (page - 1) * 10,
       where: {
         name: {
           [Op.iLike]: `%${name}%`,
@@ -18,7 +18,18 @@ class ProductController {
       },
     })
 
-    return res.json(products)
+    const count = await Product.count({
+      where: {
+        name: {
+          [Op.iLike]: `%${name}%`,
+        },
+      },
+    })
+
+    return res.json({
+      products,
+      count,
+    })
   }
 
   async store(req, res) {

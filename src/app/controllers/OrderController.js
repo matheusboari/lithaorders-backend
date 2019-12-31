@@ -21,7 +21,7 @@ class OrderController {
 
     const clientsId = clients.map(client => client.id)
 
-    const orders = await Order.findAndCountAll({
+    const orders = await Order.findAll({
       limit: 10,
       offset: (page - 1) * 10,
       attributes: [
@@ -74,7 +74,7 @@ class OrderController {
 
     return res.json({
       count,
-      orders: orders.rows,
+      orders,
     })
   }
 
@@ -142,16 +142,6 @@ class OrderController {
     if (!clientExists) {
       return res.status(400).json({ error: 'Client doesnt exists.' })
     }
-
-    console.log('Datas >>', {
-      trackNumber,
-      isTrackNumber,
-      products,
-      client_id,
-      origin,
-      status,
-      workDays,
-    })
 
     const order = await Order.create({
       track_number: trackNumber,

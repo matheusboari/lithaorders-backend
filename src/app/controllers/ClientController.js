@@ -9,8 +9,8 @@ class ClientController {
 
     const clients = await Client.findAll({
       order: ['name'],
-      limit: 20,
-      offset: (page - 1) * 20,
+      limit: 10,
+      offset: (page - 1) * 10,
       where: {
         name: {
           [Op.iLike]: `%${name}%`,
@@ -18,7 +18,18 @@ class ClientController {
       },
     })
 
-    return res.json(clients)
+    const count = await Client.count({
+      where: {
+        name: {
+          [Op.iLike]: `%${name}%`,
+        },
+      },
+    })
+
+    return res.json({
+      clients,
+      count,
+    })
   }
 
   async store(req, res) {
