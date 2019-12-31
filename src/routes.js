@@ -13,6 +13,8 @@ const routes = new Router()
 routes.post('/users', UserController.store)
 routes.post('/sessions', SessionController.store)
 
+routes.get('/', (req, res) => res.json('Ok'))
+
 routes.use(authMiddleware)
 
 // Client routes
