@@ -9,6 +9,11 @@ import Client from '../models/Client'
 class OrderController {
   async index(req, res) {
     const { page = 1, status = '', client = '' } = req.query
+    let { date = null } = req.query
+
+    if (date === null || date === 'null') {
+      date = new Date(-1)
+    }
 
     const clients = await Client.findAll({
       attributes: ['id'],
@@ -57,6 +62,9 @@ class OrderController {
         },
         client_id: {
           [Op.in]: clientsId,
+        },
+        post_date: {
+          [Op.gte]: date,
         },
       },
     })
