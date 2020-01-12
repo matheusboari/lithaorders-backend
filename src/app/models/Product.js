@@ -21,6 +21,7 @@ class Product extends Model {
       foreignKey: 'product_id',
       as: 'orders',
     })
+    this.belongsTo(models.File, { foreignKey: 'photo_id', as: 'photo' })
   }
 }
 

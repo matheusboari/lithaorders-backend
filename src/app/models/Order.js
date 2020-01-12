@@ -37,6 +37,7 @@ class Order extends Model {
       as: 'products',
     })
     this.belongsTo(models.Client, { foreignKey: 'client_id', as: 'client' })
+    this.belongsTo(models.File, { foreignKey: 'photo_id', as: 'photo' })
   }
 }
 
